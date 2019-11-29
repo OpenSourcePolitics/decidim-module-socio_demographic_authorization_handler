@@ -9,6 +9,7 @@ gem "decidim-socio_demographic_authorization_handler", path: "."
 
 gem "puma", "~> 3.0"
 gem "uglifier", "~> 4.1"
+gem "bootsnap"
 
 group :development, :test do
   gem "byebug", "~> 10.0", platform: :mri

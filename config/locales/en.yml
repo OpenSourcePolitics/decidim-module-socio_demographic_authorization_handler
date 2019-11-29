@@ -1,6 +1,16 @@
 ---
 en:
   decidim:
-    components:
+    verifications:
+      genders:
+        man: Man
+        woman: Woman
+        undefined: Undefined
+    authorization_handlers:
       socio_demographic_authorization_handler:
-        name: SocioDemographicAuthorizationHandler
+        explanation: explanation
+        name: Socio demographic authorization
+        fields:
+          scope: Scope
+          gender: What is your gender ?
+          age: How old are you ?

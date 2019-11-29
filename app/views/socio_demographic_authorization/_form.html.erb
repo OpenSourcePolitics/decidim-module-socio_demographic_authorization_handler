@@ -1,0 +1,16 @@
+<h1>TESTEURFOU</h1>
+
+<%#= form.all_fields %>
+
+<div class="card-section">
+  <div class="field">
+    <%= form.select :scope, current_organization.scopes.map { |scope| [translated_attribute(scope.name), scope.code.downcase] } %>
+  </div>
+  <div class="field">
+    <%= form.select :gender, %w(Man Woman Undefined).map { |gender| [I18n.t(gender.downcase, scope: "decidim.verifications.genders"), gender.downcase] } %>
+  </div>
+
+  <div class="field">
+    <%= form.number_field :age %>
+  </div>
+</div>

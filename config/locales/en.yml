@@ -1,0 +1,6 @@
+---
+en:
+  decidim:
+    components:
+      socio_demographic_authorization_handler:
+        name: SocioDemographicAuthorizationHandler

@@ -9,6 +9,7 @@ describe "Authorizations", type: :system, with_authorization_workflows: ["socio_
 
   context "when a new user" do
     let(:organization) { create :organization, available_authorizations: authorizations }
+    let!(:scopes) { create_list(:scope, 9, organization: organization) }
 
     let(:user) { create(:user, :confirmed, organization: organization) }
 
@@ -27,9 +28,9 @@ describe "Authorizations", type: :system, with_authorization_workflows: ["socio_
       end
 
       it "redirects the user to the authorization form after the first sign in" do
-        fill_in :scope, with: organization.scopes
-        fill_in :gender, with: %w(Man Woman Undefined)
-        fill_in :age, with: %w(16-25 26-45 46-65 65+)
+        find('select#authorization_handler_scope').find("option", match: :first).select_option
+        find('select#authorization_handler_gender').find("option", match: :first).select_option
+        find('select#authorization_handler_age').find("option", match: :first).select_option
 
         click_button "Send"
         expect(page).to have_content("You've been successfully authorized")
@@ -82,9 +83,10 @@ describe "Authorizations", type: :system, with_authorization_workflows: ["socio_
         click_link "Authorizations"
         click_link "Socio Demographic Authorization"
 
-        fill_in "Document number", with: "123456789X"
-        page.execute_script("$('#authorization_handler_birthday').focus()")
-        page.find(".datepicker-dropdown .day", text: "12").click
+        fill_in :scope, with: organization.scopes
+        fill_in :gender, with: %w(Man Woman Undefined)
+        fill_in :age, with: %w(16-25 26-45 46-65 65+)
+
         click_button "Send"
 
         expect(page).to have_content("You've been successfully authorized")
@@ -107,9 +109,10 @@ describe "Authorizations", type: :system, with_authorization_workflows: ["socio_
         click_link "Authorizations"
         click_link "Socio Demographic Authorization"
 
-        fill_in "Document number", with: "12345678"
-        page.execute_script("$('#authorization_handler_birthday').focus()")
-        page.find(".datepicker-dropdown .day", text: "12").click
+        fill_in :scope, with: organization.scopes
+        fill_in :gender, with: %w(Man Woman Undefined)
+        fill_in :age, with: %w(16-25 26-45 46-65 65+)
+
         click_button "Send"
 
         expect(page).to have_content("There was a problem creating the authorization.")
@@ -171,7 +174,7 @@ describe "Authorizations", type: :system, with_authorization_workflows: ["socio_
             click_link "Socio Demographic Authorization"
           end
 
-          fill_in "Document number", with: "123456789X"
+          fill_in :scope, with: organization.scopes
           click_button "Send"
 
           expect(page).to have_content("You've been successfully authorized")

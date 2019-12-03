@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "decidim/socio_demographic_authorization_handler/workflow"
-require "decidim/socio_demographic_authorization_handler/socio_demographic_authorization_handler"
+#require "decidim/socio_demographic_authorization_handler/socio_demographic_authorization_handler"
 
 module Decidim
   # This namespace holds the logic of the `SocioDemographicAuthorizationHandler` component. This component

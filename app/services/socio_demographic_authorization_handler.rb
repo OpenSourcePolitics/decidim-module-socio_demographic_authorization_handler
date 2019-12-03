@@ -21,42 +21,28 @@
 # See Decidim::AuthorizationHandler for more documentation.
 class SocioDemographicAuthorizationHandler < Decidim::AuthorizationHandler
 
-  # Define the attributes you need for this authorization handler. Attributes
-  # are defined using Virtus.
-  #
   attribute :scope, String
   attribute :gender, String
-  attribute :age, Integer
+  attribute :age, String
 
-
-  GENDER = %w(man woman undefined).freeze
+  GENDER = %w[man woman undefined].freeze
   SCOPES = Decidim::Scope.all.map { |scope| scope.code.downcase }
+  AGE_SLICE = %w[16-25 26-45 46-65 65+].freeze
 
-
-  # You can (and should) also define validations on each attribute:
   validates :scope,
-            inclusion: {in: SCOPES},
+            inclusion: { in: SCOPES },
             presence: true
 
   validates :gender,
-            inclusion: {in: GENDER},
+            inclusion: { in: GENDER },
             presence: true
 
-  validates :age, presence: true
+  validates :age,
+            inclusion: { in: AGE_SLICE },
+            presence: true
 
   def metadata
-    {
-      "scope" => scope,
-      "gender" => gender,
-      "age" => age
-    }
+    super.merge(scope: scope, gender: gender, age: age)
   end
 
-  def verification_metadata
-    {
-      "scope" => scope,
-      "gender" => gender,
-      "age" => age
-    }
-  end
 end

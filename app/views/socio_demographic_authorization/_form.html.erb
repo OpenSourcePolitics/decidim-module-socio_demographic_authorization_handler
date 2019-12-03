@@ -1,7 +1,4 @@
-<h1>TESTEURFOU</h1>
-
-<%#= form.all_fields %>
-
+<%= hidden_field :authorization_handler, :handler_name, value: "socio_demographic_authorization_handler" %>
 <div class="card-section">
   <div class="field">
     <%= form.select :scope, current_organization.scopes.map { |scope| [translated_attribute(scope.name), scope.code.downcase] } %>
@@ -11,6 +8,6 @@
   </div>
 
   <div class="field">
-    <%= form.number_field :age %>
+    <%= form.select :age, %w(16-25 26-45 46-65 65+).map { |slice| [slice, slice] } %>
   </div>
 </div>

@@ -3,15 +3,15 @@
 require "spec_helper"
 
 describe "Authorizations", type: :system, with_authorization_workflows: ["socio_demographic_authorization_handler"] do
+  let(:organization) { create :organization, available_authorizations: authorizations }
+  let!(:scopes) { create_list(:scope, 9, organization: organization) }
+  let(:user) { create(:user, :confirmed, organization: organization) }
+
   before do
     switch_to_host(organization.host)
   end
 
   context "when a new user" do
-    let(:organization) { create :organization, available_authorizations: authorizations }
-    let!(:scopes) { create_list(:scope, 9, organization: organization) }
-
-    let(:user) { create(:user, :confirmed, organization: organization) }
 
     context "when one authorization has been configured" do
       let(:authorizations) { ["socio_demographic_authorization_handler"] }
@@ -27,14 +27,10 @@ describe "Authorizations", type: :system, with_authorization_workflows: ["socio_
         end
       end
 
-      it "redirects the user to the authorization form after the first sign in" do
-        find('select#authorization_handler_scope').find("option", match: :first).select_option
-        find('select#authorization_handler_gender').find("option", match: :first).select_option
-        find('select#authorization_handler_age').find("option", match: :first).select_option
-
-        click_button "Send"
-        expect(page).to have_content("You've been successfully authorized")
+      it "redirects the user to the authorization form after the confirmation mail" do
+        expect(page).to have_content("Socio Demographic Authorization")
       end
+
 
       it "allows the user to skip it" do
         click_link "start exploring"
@@ -64,59 +60,11 @@ describe "Authorizations", type: :system, with_authorization_workflows: ["socio_
   end
 
   context "when existing user from her account" do
-    let(:organization) { create :organization, available_authorizations: authorizations }
-    let(:user) { create(:user, :confirmed, organization: organization) }
+
 
     before do
       login_as user, scope: :user
       visit decidim.root_path
-    end
-
-    context "when user has not already been authorized" do
-      let(:authorizations) { ["socio_demographic_authorization_handler", "dummy_authorization_handler"] }
-
-      it "allows the user to authorize against available authorizations" do
-        within_user_menu do
-          click_link "My account"
-        end
-
-        click_link "Authorizations"
-        click_link "Socio Demographic Authorization"
-
-        fill_in :scope, with: organization.scopes
-        fill_in :gender, with: %w(Man Woman Undefined)
-        fill_in :age, with: %w(16-25 26-45 46-65 65+)
-
-        click_button "Send"
-
-        expect(page).to have_content("You've been successfully authorized")
-
-        within "#user-settings-tabs" do
-          click_link "Authorizations"
-        end
-
-        within ".authorizations-list" do
-          expect(page).to have_content("Socio Demographic Authorization")
-          expect(page).to have_no_link("Socio Demographic Authorization")
-        end
-      end
-
-      it "checks if the given data is invalid" do
-        within_user_menu do
-          click_link "My account"
-        end
-
-        click_link "Authorizations"
-        click_link "Socio Demographic Authorization"
-
-        fill_in :scope, with: organization.scopes
-        fill_in :gender, with: %w(Man Woman Undefined)
-        fill_in :age, with: %w(16-25 26-45 46-65 65+)
-
-        click_button "Send"
-
-        expect(page).to have_content("There was a problem creating the authorization.")
-      end
     end
 
     context "when the user has already been authorized" do

@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
-require "active_support/concern"
+require 'active_support/concern'
 
 module ConfirmationsControllerExtend
-
-  # Je met dans mon applicationController les methods concern
+  # Je met dans mon ConfirmationsController les methods concern
   extend ActiveSupport::Concern
 
   # method included de concern

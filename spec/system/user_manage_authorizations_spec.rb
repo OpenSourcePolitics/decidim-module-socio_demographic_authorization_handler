@@ -5,8 +5,7 @@ require 'spec_helper'
 describe 'User authorizations', type: :system do
   let!(:organization) do
     create(:organization,
-           available_authorizations: ['socio_demographic_authorization_handler']
-          )
+           available_authorizations: ['socio_demographic_authorization_handler'])
   end
 
   let(:user) { create(:user) }
@@ -41,8 +40,6 @@ describe 'User authorizations', type: :system do
         expect(page).to have_field('authorization_handler_age')
         find('*[type=submit]')
       end
-
     end
-
   end
 end

@@ -26,10 +26,6 @@ describe 'Authorizations', type: :system, with_authorization_workflows: ['socio_
         end
       end
 
-      it 'redirects the user to the authorization form after the confirmation mail' do
-        expect(page).to have_content('Socio Demographic Authorization')
-      end
-
       it 'allows the user to skip it' do
         click_link 'start exploring'
         expect(page).to have_current_path decidim.account_path

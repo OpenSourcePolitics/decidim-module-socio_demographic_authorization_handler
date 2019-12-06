@@ -31,7 +31,7 @@ describe SocioDemographicAuthorizationHandler do
     end
   end
 
-  context "when scope is invalid" do
+  context "when scope is not in list" do
     let(:scope) { "fakedata" }
 
     it "is not valid" do
@@ -40,7 +40,7 @@ describe SocioDemographicAuthorizationHandler do
     end
   end
 
-  context "when gender is invalid" do
+  context "when gender is not in list" do
     let(:gender) { "fakedata" }
 
     it "is not valid" do
@@ -49,12 +49,20 @@ describe SocioDemographicAuthorizationHandler do
     end
   end
 
-  context "when age is invalid" do
+  context "when age is not in list" do
     let(:age) { "fakedata" }
 
     it "is not valid" do
       expect(subject).not_to be_valid
       expect(subject.errors[:age]).to include("is not included in the list")
+    end
+  end
+
+  context "when one field is empty" do
+    let(:scope) { "" }
+
+    it "is valid" do
+      expect(subject).to be_valid
     end
   end
 end

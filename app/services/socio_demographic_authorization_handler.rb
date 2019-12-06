@@ -7,8 +7,8 @@ class SocioDemographicAuthorizationHandler < Decidim::AuthorizationHandler
   attribute :age, String
 
   SCOPES = Decidim::Scope.all.map { |scope| scope.code.downcase }
-  GENDER = %w[man woman undefined].freeze
-  AGE_SLICE = %w[16-25 26-45 46-65 65+].freeze
+  GENDER = %w(man woman undefined).freeze
+  AGE_SLICE = %w(16-25 26-45 46-65 65+).freeze
 
   validates :scope,
             inclusion: { in: SCOPES },

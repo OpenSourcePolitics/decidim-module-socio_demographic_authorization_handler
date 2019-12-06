@@ -14,5 +14,3 @@ fr:
         man: Homme
         undefined: Non défini
         woman: Femme
-      scopes:
-        blank_option: Veuillez renseigner un scope

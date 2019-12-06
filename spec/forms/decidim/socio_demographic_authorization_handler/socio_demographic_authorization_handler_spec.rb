@@ -6,7 +6,7 @@ describe SocioDemographicAuthorizationHandler do
   subject do
     described_class.new(
       user: user,
-      scope: scope,
+      scope_id: scope_id,
       gender: gender,
       age: age
     )
@@ -17,26 +17,29 @@ describe SocioDemographicAuthorizationHandler do
   let(:organization) { user.organization }
   let!(:scopes) { create_list(:scope, 9, organization: organization) }
 
-  let(:scope) { organization.scopes.first.code.downcase }
+  let(:scope_id) { organization.scopes.first.id }
   let(:gender) { "man" }
   let(:age) { "16-25" }
 
   context "when the information is valid" do
-    before do
-      organization.scopes.each { |scope| described_class::SCOPES << scope.code.downcase }
-    end
-
     it "is valid" do
       expect(subject).to be_valid
     end
   end
 
-  context "when scope is not in list" do
-    let(:scope) { "fakedata" }
+  context "when scope_id is not an integer" do
+    let(:scope_id) { "fakedata" }
 
     it "is not valid" do
       expect(subject).not_to be_valid
-      expect(subject.errors[:scope]).to include("is not included in the list")
+    end
+  end
+
+  context "when scope_id doesn't refer to an valid scope" do
+    let(:scope_id) { -1 }
+
+    it "is not valid" do
+      expect(subject).not_to be_valid
     end
   end
 
@@ -59,7 +62,7 @@ describe SocioDemographicAuthorizationHandler do
   end
 
   context "when one field is empty" do
-    let(:scope) { "" }
+    let(:scope_id) { nil }
 
     it "is valid" do
       expect(subject).to be_valid

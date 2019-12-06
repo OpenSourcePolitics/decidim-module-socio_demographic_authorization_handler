@@ -13,5 +13,3 @@ en:
         man: Man
         undefined: Undefined
         woman: Woman
-      scopes:
-        blank_option: Please specify a scope

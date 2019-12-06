@@ -1,12 +1,17 @@
 ---
 en:
   decidim:
-    verifications:
-      genders:
-        man: Man
-        woman: Woman
-        undefined: Undefined
     authorization_handlers:
       socio_demographic_authorization_handler:
         explanation: Get verified with few informations for socio demographics studies
         name: Socio Demographic Authorization
+    verifications:
+      age_slice:
+        blank_option: Please specify an age slice
+      genders:
+        blank_option: Please specify a gender
+        man: Man
+        undefined: Undefined
+        woman: Woman
+      scopes:
+        blank_option: Please specify a scope

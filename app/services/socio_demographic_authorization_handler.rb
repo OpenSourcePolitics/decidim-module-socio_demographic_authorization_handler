@@ -11,16 +11,16 @@ class SocioDemographicAuthorizationHandler < Decidim::AuthorizationHandler
   AGE_SLICE = %w(16-25 26-45 46-65 65+).freeze
 
   validates :scope,
-            inclusion: { in: SCOPES },
-            presence: true
+            inclusion: { in: SCOPES, if: proc { |x| x.scope.present? } },
+            presence: false
 
   validates :gender,
-            inclusion: { in: GENDER },
-            presence: true
+            inclusion: { in: GENDER, if: proc { |x| x.gender.present? } },
+            presence: false
 
   validates :age,
-            inclusion: { in: AGE_SLICE },
-            presence: true
+            inclusion: { in: AGE_SLICE, if: proc { |x| x.age.present? } },
+            presence: false
 
   def metadata
     super.merge(scope: scope, gender: gender, age: age)

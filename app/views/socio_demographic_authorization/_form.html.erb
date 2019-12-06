@@ -1,13 +1,13 @@
 <%= hidden_field :authorization_handler, :handler_name, value: "socio_demographic_authorization_handler" %>
 <div class="card-section">
   <div class="field">
-    <%= form.select :scope, current_organization.scopes.map { |scope| [translated_attribute(scope.name), scope.code.downcase] } %>
+    <%= form.select :scope, current_organization.scopes.map { |scope| [translated_attribute(scope.name), scope.code.downcase] }, { include_blank: t('decidim.verifications.scopes.blank_option') } %>
   </div>
   <div class="field">
-    <%= form.select :gender, %w(Man Woman Undefined).map { |gender| [I18n.t(gender.downcase, scope: "decidim.verifications.genders"), gender.downcase] } %>
+    <%= form.select :gender, %w(Man Woman Undefined).map { |gender| [I18n.t(gender.downcase, scope: "decidim.verifications.genders"), gender.downcase] }, { include_blank: t('decidim.verifications.genders.blank_option') } %>
   </div>
 
   <div class="field">
-    <%= form.select :age, %w(16-25 26-45 46-65 65+).map { |slice| [slice, slice] } %>
+    <%= form.select :age, %w(16-25 26-45 46-65 65+).map { |slice| [slice, slice] }, { include_blank: t('decidim.verifications.age_slice.blank_option') } %>
   </div>
 </div>

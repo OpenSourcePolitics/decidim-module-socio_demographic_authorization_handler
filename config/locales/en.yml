@@ -8,9 +8,5 @@ en:
         undefined: Undefined
     authorization_handlers:
       socio_demographic_authorization_handler:
-        explanation: explanation
-        name: Socio demographic authorization
-        fields:
-          scope: Scope
-          gender: What is your gender ?
-          age: How old are you ?
+        explanation: Get verified with few informations for socio demographics studies
+        name: Socio Demographic Authorization

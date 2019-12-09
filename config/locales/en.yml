@@ -13,3 +13,6 @@ en:
         man: Man
         undefined: Undefined
         woman: Woman
+  errors:
+    messages:
+      integer_only: Integer only

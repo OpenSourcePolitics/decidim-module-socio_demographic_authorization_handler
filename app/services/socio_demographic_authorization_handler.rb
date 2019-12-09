@@ -10,7 +10,7 @@ class SocioDemographicAuthorizationHandler < Decidim::AuthorizationHandler
   AGE_SLICE = %w(16-25 26-45 46-65 65+).freeze
 
   validates :scope_id,
-            format: { with: /\A\d+\z/, message: "Integer only", if: proc { |x| !x.scope_id.nil? && validate_scope } },
+            format: { with: /\A\d+\z/, message: I18n.t("errors.messages.integer_only"), if: proc { |x| !x.scope_id.nil? && validate_scope } },
             presence: false
 
   validates :gender,
@@ -28,6 +28,6 @@ class SocioDemographicAuthorizationHandler < Decidim::AuthorizationHandler
   private
 
   def validate_scope
-    errors[:scope_id] << "must be valid" if Decidim::Scope.where(id: scope_id).empty?
+    errors.add(:scope_id, :invalid) if Decidim::Scope.where(id: scope_id).empty?
   end
 end

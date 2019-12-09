@@ -14,3 +14,6 @@ fr:
         man: Homme
         undefined: Non défini
         woman: Femme
+  errors:
+    messages:
+      integer_only: Integer only

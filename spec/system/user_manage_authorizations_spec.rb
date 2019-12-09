@@ -41,5 +41,14 @@ describe "User authorizations", type: :system do
         expect(page).to have_field("Age")
       end
     end
+
+    it "allows user to fill form" do
+      scope_pick select_data_picker(:authorization_handler_scope_id), organization.scopes.first
+      select("Man", from: "Gender")
+      select("16-25", from: "Age")
+      click_button "Send"
+
+      expect(page).to have_content("You've been successfully authorized")
+    end
   end
 end

@@ -3,6 +3,7 @@
 require "spec_helper"
 
 describe "User authorizations", type: :system do
+  let!(:scope) { create_list(:scope, 3, organization: organization) }
   let!(:organization) do
     create(:organization,
            available_authorizations: ["socio_demographic_authorization_handler"])
@@ -35,10 +36,9 @@ describe "User authorizations", type: :system do
       expect(page).to have_content "Socio Demographic Authorization"
 
       within ".new_authorization_handler" do
-        expect(page).to have_field("authorization_handler_scope")
-        expect(page).to have_field("authorization_handler_gender")
-        expect(page).to have_field("authorization_handler_age")
-        find("*[type=submit]")
+        expect(page).to have_content("Scope")
+        expect(page).to have_field("Gender")
+        expect(page).to have_field("Age")
       end
     end
   end

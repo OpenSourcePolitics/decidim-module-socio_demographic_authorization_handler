@@ -7,6 +7,7 @@ ruby RUBY_VERSION
 gem "decidim", git: "https://github.com/OpenSourcePolitics/decidim", branch: "0.18-merge"
 gem "decidim-socio_demographic_authorization_handler", path: "."
 
+gem "bootsnap"
 gem "puma", "~> 3.0"
 gem "uglifier", "~> 4.1"
 

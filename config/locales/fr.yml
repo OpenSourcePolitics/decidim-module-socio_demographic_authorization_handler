@@ -1,0 +1,16 @@
+---
+fr:
+  decidim:
+    authorization_handlers:
+      socio_demographic_authorization_handler:
+        explanation: Vérifiez votre compte avec quelques informations dans le cadre
+          d'une étude socio démographique
+        name: Autorisation Socio Démographique
+    verifications:
+      age_slice:
+        blank_option: Veuillez renseigner une tranche d'âge
+      genders:
+        blank_option: Veuillez renseigner un genre
+        man: Homme
+        undefined: Non défini
+        woman: Femme

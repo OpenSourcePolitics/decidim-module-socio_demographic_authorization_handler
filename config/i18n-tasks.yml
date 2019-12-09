@@ -1,10 +1,12 @@
 ---
 
 base_locale: en
-locales: [en]
+locales: [en, fr]
 
 ignore_unused:
   - "decidim.components.socio_demographic_authorization_handler.name"
+  - "decidim.authorization_handlers.socio_demographic_authorization_handler.name"
+  - "decidim.authorization_handlers.socio_demographic_authorization_handler.explanation"
 
 ignore_missing:
   - decidim.participatory_processes.scopes.global

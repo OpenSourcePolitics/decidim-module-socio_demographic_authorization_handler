@@ -1,0 +1,18 @@
+---
+fr:
+  decidim:
+    authorization_handlers:
+      socio_demographic_authorization_handler:
+        explanation: Vul uw informatie in op het profiel
+        name: Données personnelles
+    verifications:
+      age_slice:
+        blank_option: Vul een leeftijdsgroep in
+      genders:
+        blank_option: Gelieve een geslacht in te voeren
+        man: Man
+        undefined: Niet gedefinieerd
+        woman: Vrouw
+  errors:
+    messages:
+      integer_only: Alleen geheel getal

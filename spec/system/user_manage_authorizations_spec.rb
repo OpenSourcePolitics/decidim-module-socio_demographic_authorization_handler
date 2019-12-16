@@ -3,6 +3,8 @@
 require "spec_helper"
 
 describe "User authorizations", type: :system do
+  include Decidim::TranslatableAttributes
+
   let!(:scope) { create_list(:scope, 3, organization: organization) }
   let!(:organization) do
     create(:organization,
@@ -21,7 +23,7 @@ describe "User authorizations", type: :system do
 
   it "displays the authorization item" do
     within ".tabs-content.vertical" do
-      expect(page).to have_content("Socio Demographic Authorization")
+      expect(page).to have_content("Additional informations")
     end
   end
 
@@ -29,11 +31,11 @@ describe "User authorizations", type: :system do
     before do
       visit "/authorizations"
 
-      click_link "Socio Demographic Authorization"
+      click_link "Additional informations"
     end
 
     it "displays authorization form" do
-      expect(page).to have_content "Socio Demographic Authorization"
+      expect(page).to have_content "Additional informations"
 
       within ".new_authorization_handler" do
         expect(page).to have_content("Scope")
@@ -43,7 +45,7 @@ describe "User authorizations", type: :system do
     end
 
     it "allows user to fill form" do
-      scope_pick select_data_picker(:authorization_handler_scope_id), organization.scopes.first
+      select(translated_attribute(organization.scopes.first.name), from: "Scope")
       select("Man", from: "Gender")
       select("16-25", from: "Age")
       click_button "Send"

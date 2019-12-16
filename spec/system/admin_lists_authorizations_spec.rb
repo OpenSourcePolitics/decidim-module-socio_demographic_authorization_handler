@@ -20,7 +20,7 @@ describe "Admin lists authorizations", type: :system do
 
   it "allows the system admin to list all available authorization methods" do
     within ".edit_organization" do
-      expect(page).to have_content("Socio Demographic Authorization")
+      expect(page).to have_content("Additional informations")
     end
   end
 end

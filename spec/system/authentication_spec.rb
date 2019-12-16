@@ -212,7 +212,7 @@ describe "Authentication", type: :system do
 
       expect(page).to have_content("successfully confirmed")
       expect(last_user).to be_confirmed
-      expect(page).to have_content("Socio Demographic Authorization")
+      expect(page).to have_content("Additional informations")
     end
   end
 

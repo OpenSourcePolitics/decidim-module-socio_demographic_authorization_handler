@@ -5,6 +5,10 @@ fr:
       socio_demographic_authorization_handler:
         explanation: Complétez les informations de votre profil
         name: Données personnelles
+        fields:
+          age: Âge
+          gender: Genre
+          scope_id: Périmètre
     verifications:
       age_slice:
         blank_option: Veuillez renseigner une tranche d'âge
@@ -15,4 +19,4 @@ fr:
         woman: Femme
   errors:
     messages:
-      integer_only: Integer only
+      integer_only: Nombre entier requis

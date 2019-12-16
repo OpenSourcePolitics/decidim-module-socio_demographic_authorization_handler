@@ -3,8 +3,12 @@ en:
   decidim:
     authorization_handlers:
       socio_demographic_authorization_handler:
-        explanation: Get verified with few informations for socio demographics studies
-        name: Socio Demographic Authorization
+        explanation: Complete your profile with additional informations
+        name: Additional informations
+        fields:
+          age: Age
+          gender: Gender
+          scope_id: Scope
     verifications:
       age_slice:
         blank_option: Please specify an age slice

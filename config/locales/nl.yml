@@ -1,10 +1,14 @@
 ---
-fr:
+nl:
   decidim:
     authorization_handlers:
       socio_demographic_authorization_handler:
         explanation: Vul uw informatie in op het profiel
-        name: Données personnelles
+        name: Extra informatie
+        fields:
+          age: Leeftijd
+          gender: Gender
+          scope_id: Wijk
     verifications:
       age_slice:
         blank_option: Vul een leeftijdsgroep in

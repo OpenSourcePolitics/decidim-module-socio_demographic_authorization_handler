@@ -3,14 +3,17 @@
   <div class="field">
     <%= form.select :scope_id,
                     current_organization.scopes.map { |scopes| [translated_attribute(scopes.name), scopes.id] },
-                    label: t("scope_id", scope: "decidim.authorization_handlers.socio_demographic_authorization_handler.fields") %>
+                    {
+                        include_blank: t('decidim.verifications.scope_id.blank_option'),
+                        label: t("scope_id", scope: "decidim.authorization_handlers.socio_demographic_authorization_handler.fields")
+                    } %>
   </div>
   <div class="field">
     <%= form.select :gender,
                     %w(Man Woman Undefined).map { |gender| [I18n.t(gender.downcase, scope: "decidim.verifications.genders"), gender.downcase] },
                     {
                         include_blank: t('decidim.verifications.genders.blank_option'),
-                        abel: t("gender", scope: "decidim.authorization_handlers.socio_demographic_authorization_handler.fields")
+                        label: t("gender", scope: "decidim.authorization_handlers.socio_demographic_authorization_handler.fields")
                     } %>
   </div>
 

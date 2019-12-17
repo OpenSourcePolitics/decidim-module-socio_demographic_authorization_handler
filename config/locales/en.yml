@@ -17,6 +17,8 @@ en:
         man: Man
         undefined: Undefined
         woman: Woman
+      scope_id:
+        blank_option: Blank option
   errors:
     messages:
       integer_only: Integer only

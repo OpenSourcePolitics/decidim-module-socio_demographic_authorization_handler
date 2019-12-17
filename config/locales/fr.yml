@@ -17,6 +17,8 @@ fr:
         man: Homme
         undefined: Non défini
         woman: Femme
+      scope_id:
+        blank_option: Veuillez renseigner un périmètre
   errors:
     messages:
       integer_only: Nombre entier requis

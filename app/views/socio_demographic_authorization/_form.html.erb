@@ -10,7 +10,7 @@
   </div>
   <div class="field">
     <%= form.select :gender,
-                    %w(Man Woman Undefined).map { |gender| [I18n.t(gender.downcase, scope: "decidim.verifications.genders"), gender.downcase] },
+                    %w(Woman Man Undefined).map { |gender| [I18n.t(gender.downcase, scope: "decidim.verifications.genders"), gender.downcase] },
                     {
                         include_blank: t('decidim.verifications.genders.blank_option'),
                         label: t("gender", scope: "decidim.authorization_handlers.socio_demographic_authorization_handler.fields")

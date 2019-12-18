@@ -6,7 +6,7 @@ class SocioDemographicAuthorizationHandler < Decidim::AuthorizationHandler
   attribute :gender, String
   attribute :age, String
 
-  GENDER = %w(man woman undefined).freeze
+  GENDER = %w(woman man undefined).freeze
   AGE_SLICE = %w(16-25 26-45 46-65 65+).freeze
 
   validates :scope_id,

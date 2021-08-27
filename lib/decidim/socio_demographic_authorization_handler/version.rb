@@ -4,11 +4,11 @@ module Decidim
   # This holds the decidim-meetings version.
   module SocioDemographicAuthorizationHandler
     def self.version
-      "0.23.6"
+      "0.23.1"
     end
 
     def self.decidim_version
-      "release/0.23-stable"
+      "v0.23.1"
     end
   end
 end

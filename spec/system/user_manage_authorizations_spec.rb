@@ -11,13 +11,14 @@ describe "User authorizations", type: :system do
            available_authorizations: ["socio_demographic_authorization_handler"])
   end
 
-  let(:user) { create(:user) }
+  let(:user) { create(:user, :confirmed) }
 
   before do
     switch_to_host(organization.host)
     login_as user, scope: :user
     visit decidim.root_path
     click_link user.name
+    click_link "My account"
     click_link "Authorizations"
   end
 

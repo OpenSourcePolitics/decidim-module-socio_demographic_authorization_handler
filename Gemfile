@@ -16,7 +16,7 @@ gem "decidim-socio_demographic_authorization_handler", path: "."
 
 gem "bootsnap", "~> 1.4"
 
-gem "puma", "~> 4.3.7"
+gem "puma", ">= 5.3.1"
 gem "uglifier", "~> 4.1"
 
 group :development, :test do

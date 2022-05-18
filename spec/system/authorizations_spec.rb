@@ -42,8 +42,8 @@ describe "Authorizations", type: :system, with_authorization_workflows: ["dummy_
       end
     end
 
-    context "when multiple authorizations have been configured", with_authorization_workflows: %w(dummy_authorization_handler dummy_authorization_workflow) do
-      let(:authorizations) { %w(dummy_authorization_handler dummy_authorization_workflow socio_demographic_authorization_handler) }
+    context "when multiple authorizations have been configured", with_authorization_workflows: %w[dummy_authorization_handler dummy_authorization_workflow] do
+      let(:authorizations) { %w[dummy_authorization_handler dummy_authorization_workflow socio_demographic_authorization_handler] }
 
       before do
         visit decidim.root_path

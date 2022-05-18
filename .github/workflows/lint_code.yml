@@ -1,18 +1,9 @@
 name: "[CI] Lint"
-on:
-  push:
-    branches:
-      - develop
-      - release/*
-      - "*-stable"
-  pull_request:
-    branches-ignore:
-      - "chore/l10n*"
+on: [push]
 
 env:
   CI: "true"
   SIMPLECOV: "true"
-  RUBY_VERSION: 2.6.6
 
 jobs:
   lint:

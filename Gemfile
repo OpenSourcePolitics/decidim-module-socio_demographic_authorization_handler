@@ -4,17 +4,26 @@ source "https://rubygems.org"
 
 ruby RUBY_VERSION
 
-gem "decidim", git: "https://github.com/OpenSourcePolitics/decidim", branch: "0.18-merge"
+# Inside the development app, the relative require has to be one level up, as
+# the Gemfile is copied to the development_app folder (almost) as is.
+# Source: https://github.com/mainio/decidim-module-antivirus/blob/master/Gemfile
+base_path = ""
+base_path = "../" if File.basename(__dir__) == "development_app"
+require_relative "#{base_path}lib/decidim/socio_demographic_authorization_handler/version"
+
+gem "decidim", git: "https://github.com/decidim/decidim", branch: Decidim::SocioDemographicAuthorizationHandler.decidim_version
 gem "decidim-socio_demographic_authorization_handler", path: "."
 
-gem "bootsnap"
-gem "puma", "~> 3.0"
+gem "bootsnap", "~> 1.4"
+
+gem "puma", "~> 4.3.7"
 gem "uglifier", "~> 4.1"
 
 group :development, :test do
-  gem "byebug", "~> 10.0", platform: :mri
+  gem "byebug", "~> 11.0", platform: :mri
+  gem "simplecov", "~> 0.19.0"
 
-  gem "decidim-dev", git: "https://github.com/OpenSourcePolitics/decidim", branch: "0.18-merge"
+  gem "decidim-dev", git: "https://github.com/decidim/decidim", branch: Decidim::SocioDemographicAuthorizationHandler.decidim_version
 end
 
 group :development do

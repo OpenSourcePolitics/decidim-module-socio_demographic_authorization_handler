@@ -10,6 +10,10 @@ nl:
           gender: Gender
           scope_id: Wijk
     verifications:
+      authorizations:
+        first_login:
+          actions:
+            socio_demographic_authorization_handler: Verify with Additional informations
       age_slice:
         blank_option: Vul een leeftijdsgroep in
       genders:

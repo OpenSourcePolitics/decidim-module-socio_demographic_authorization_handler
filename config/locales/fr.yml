@@ -10,6 +10,10 @@ fr:
           scope_id: Périmètre
         name: Données personnelles
     verifications:
+      authorizations:
+        first_login:
+          actions:
+            socio_demographic_authorization_handler: Vérifier avec Données personnelles
       age_slice:
         blank_option: Veuillez renseigner une tranche d'âge
       authorizations:

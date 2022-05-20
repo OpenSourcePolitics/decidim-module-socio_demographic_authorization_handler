@@ -7,7 +7,9 @@ describe "I18n sanity" do
     ENV["ENFORCED_LOCALES"].presence || "en"
   end
 
-  let(:i18n) { I18n::Tasks::BaseTask.new({ locales: locales.split(",") }, config_file: nil) }
+  let(:i18n) do
+    I18n::Tasks::BaseTask.new(config_file: nil, locales: locales.split(","))
+  end
   let(:missing_keys) { i18n.missing_keys }
   let(:unused_keys) { i18n.unused_keys }
   let(:non_normalized_paths) { i18n.non_normalized_paths }
